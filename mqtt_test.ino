@@ -24,7 +24,7 @@
 // Update these with values suitable for your network.
 
 const char* ssid = "iPhone (Riku)";
-const char* password = "2ndgrbfW";
+const char* password = "RoTaProjekti2017qw";
 const char* mqtt_server = "172.20.10.3";
 
 WiFiClient espClient;
