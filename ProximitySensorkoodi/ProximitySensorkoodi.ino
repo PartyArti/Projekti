@@ -41,6 +41,19 @@ Distributed as-is; no warranty is given.
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 uint8_t proximity_data = 0;
 
+//boolean
+void Tunnistus(){
+ if (proximity_data > 10){
+  
+    //return true;
+    Serial.println("rotta havaittu");
+    }
+ else{
+    //return false;
+    Serial.println("ei rottaa");
+    } 
+  }
+
 void setup() {
   
   // Initialize Serial port
@@ -78,6 +91,7 @@ void loop() {
   } else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
+    Tunnistus();
   }
   
   // Wait 250 ms before next reading
