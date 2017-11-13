@@ -41,18 +41,30 @@ Distributed as-is; no warranty is given.
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 uint8_t proximity_data = 0;
 
-//boolean
-void Tunnistus(){
+boolean Tunnistus(){
  if (proximity_data > 10){
-  
-    //return true;
-    Serial.println("rotta havaittu");
+   Serial.println("rotta havaittu1");
+    return 1;
     }
+    
  else{
-    //return false;
-    Serial.println("ei rottaa");
+   Serial.println("ei rottaa1");
+    return 0;
     } 
   }
+
+void Info(){
+    if (Tunnistus()==1){
+      
+      Serial.println("rotta havaittu2");
+      
+      }
+    else{
+      
+      Serial.println("ei rottaa2");
+      
+      }
+    }
 
 void setup() {
   
@@ -91,7 +103,7 @@ void loop() {
   } else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
-    Tunnistus();
+    Info(); ///toistaiseksi ei toimi toivotusti
   }
   
   // Wait 250 ms before next reading
