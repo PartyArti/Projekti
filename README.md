@@ -1,2 +1,0 @@
-# Projekti
-tietoliikenteen sovellusprojekti
