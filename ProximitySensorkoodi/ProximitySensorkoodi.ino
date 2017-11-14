@@ -36,6 +36,9 @@ Distributed as-is; no warranty is given.
 
 #include <Wire.h>
 #include <SparkFun_APDS9960.h>
+#include <EEPROM.h>
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
 
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
@@ -100,7 +103,8 @@ void loop() {
   // Read the proximity value
   if ( !apds.readProximity(proximity_data) ) {
     Serial.println("Error reading proximity value");
-  } else {
+  } 
+  else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
     Info(); ///toistaiseksi ei toimi toivotusti
