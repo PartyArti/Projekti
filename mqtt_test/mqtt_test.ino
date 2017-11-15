@@ -87,9 +87,9 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
+      client.publish("testi_mqtt", "hello world");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      client.subscribe("mqtt2");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -122,6 +122,6 @@ void loop() {
     snprintf (msg, 75, "hello world #%ld", value);
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("outTopic", msg);
+    client.publish("testi_mqtt", msg);
   }
 }
