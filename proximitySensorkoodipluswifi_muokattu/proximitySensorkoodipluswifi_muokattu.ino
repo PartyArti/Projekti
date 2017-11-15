@@ -17,32 +17,32 @@ const char* password = "RoTaProjekti2017qw";
 const char* mqtt_server = "172.20.10.3";
 
 long lastMsg = 0;
-char msg1[50];
-char msg0[50];
+char msg1[100];
+char msg0[100];
 int value = 0;
 boolean rotta = 0;
 
-boolean Tunnistus(){
- if (proximity_data > 10){
-   Serial.println("rotta havaittu1");
-    return 1;
-    }
+//boolean Tunnistus(){
+ //if (proximity_data > 10){
+   //Serial.println("rotta havaittu1");
+    //return 1;
+    //}
     
- else{
-   Serial.println("ei rottaa1");
-    return 0;
-    } 
-  }
+ //else{
+   //Serial.println("ei rottaa1");
+    //return 0;
+   // } 
+  //}
 
 boolean Info(){
-    if (Tunnistus()==1){
+    if (proximity_data > 10){
       
-      Serial.println("rotta havaittu2");
+      Serial.println("rotta havaittu");
       return rotta=1;
       }
     else{
       
-      Serial.println("ei rottaa2");
+      Serial.println("ei rottaa");
       return rotta=0;
       }
     }
@@ -105,9 +105,9 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("testi_mqtt", "yhteys muodostettu");
+      client.publish("sensori", "yhteys muodostettu");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      client.subscribe("mqtt2");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -172,16 +172,16 @@ void loop() {
     lastMsg = now;
     ++value;
     if (rotta==1){
-    snprintf (msg1, 75, "Rotta #%ld", value);
+    snprintf (msg1, 100, "Rotta #%ld", value);
       Serial.print("Publish message: ");
      Serial.println(msg1);
-    client.publish("test_mqtt", msg1);
+    client.publish("sensori", msg1);
     }
     else{
-     snprintf (msg0, 75, "Ei rottaa #%ld", value);
+     snprintf (msg0, 100, "Ei rottaa #%ld", value);
     Serial.print("Publish message: ");
     Serial.println(msg0);
-    client.publish("test_mqtt", msg0);
+    client.publish("sensori", msg0);
     }
   }
   
