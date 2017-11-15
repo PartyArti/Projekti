@@ -22,17 +22,6 @@ char msg0[100];
 int value = 0;
 boolean rotta = 0;
 
-//boolean Tunnistus(){
- //if (proximity_data > 10){
-   //Serial.println("rotta havaittu1");
-    //return 1;
-    //}
-    
- //else{
-   //Serial.println("ei rottaa1");
-    //return 0;
-   // } 
-  //}
 
 boolean Info(){
     if (proximity_data > 10){
@@ -168,7 +157,7 @@ void loop() {
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 100) {
     lastMsg = now;
     ++value;
     if (rotta==1){
@@ -186,7 +175,7 @@ void loop() {
   }
   
   // Wait 250 ms before next reading
-  delay(1000);
+  delay(250);
 
     }
   }
