@@ -5,8 +5,6 @@
 
 
 
-
-
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 uint8_t proximity_data = 0;
@@ -14,7 +12,7 @@ uint8_t proximity_data = 0;
 //COnnect to wifi
 const char* ssid = "iPhone (Riku)";
 const char* password = "RoTaProjekti2017qw";
-const char* mqtt_server = "172.20.10.3";
+const char* mqtt_server = "172.20.10.6";
 
 long lastMsg = 0;
 char msg1[100];
@@ -27,12 +25,12 @@ boolean Info(){
     if (proximity_data > 10){
       
       Serial.println("rotta havaittu");
-      return rotta=1;
+      return rotta = 1;
       }
     else{
       
       Serial.println("ei rottaa");
-      return rotta=0;
+      return rotta = 0;
       }
     }
 
