@@ -4,18 +4,39 @@
 #include <PubSubClient.h>
 
 
+
 // Global Variables
 SparkFun_APDS9960 apds = SparkFun_APDS9960();
 uint8_t proximity_data = 0;
+
+//COnnect to wifi
 const char* ssid = "iPhone (Riku)";
 const char* password = "RoTaProjekti2017qw";
-const char* mqtt_server = "172.20.10.3";
+const char* mqtt_server = "172.20.10.6";
+
+long lastMsg = 0;
+char msg1[100];
+char msg0[100];
+int value = 0;
+boolean rotta = 0;
+
+
+boolean Info(){
+    if (proximity_data > 10){
+      
+      Serial.println("rotta havaittu");
+      return rotta = 1;
+      }
+    else{
+      
+      Serial.println("ei rottaa");
+      return rotta = 0;
+      }
+    }
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-long lastMsg = 0;
-char msg[50];
-int value = 0;
+
 
 void setup_wifi() {
 
@@ -71,9 +92,9 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
+      client.publish("sensori", "yhteys muodostettu");
       // ... and resubscribe
-      client.subscribe("inTopic");
+      client.subscribe("mqtt2");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -87,13 +108,12 @@ void reconnect() {
 void setup() {
   
   // Initialize Serial port
-
-  pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
-  Serial.begin(9600);
+   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+   Serial.begin(9600);
   setup_wifi();
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, 1883); ///8883 secure mqtt
   client.setCallback(callback);
-
+ 
   Serial.println();
   Serial.println(F("------------------------------------"));
   Serial.println(F("SparkFun APDS-9960 - ProximitySensor"));
@@ -124,25 +144,36 @@ void loop() {
   // Read the proximity value
   if ( !apds.readProximity(proximity_data) ) {
     Serial.println("Error reading proximity value");
-  } else {
+  } 
+  else {
     Serial.print("Proximity: ");
     Serial.println(proximity_data);
+    Info();
     if (!client.connected()) {
     reconnect();
   }
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 2000) {
+  if (now - lastMsg > 100) {
     lastMsg = now;
     ++value;
-    snprintf (msg, 75, "hello world #%ld", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    client.publish("outTopic", msg);
+    if (rotta==1){
+    snprintf (msg1, 100, "Rotta #%ld", value);
+      Serial.print("Publish message: ");
+     Serial.println(msg1);
+    client.publish("sensori", msg1);
+    }
+    else{
+    // snprintf (msg0, 100, "Ei rottaa #%ld", value);
+   // Serial.print("Publish message: ");
+   // Serial.println(msg0);
+   // client.publish("sensori", msg0);
+    }
   }
   
   // Wait 250 ms before next reading
-  delay(1000);
-}
-}
+  delay(250);
+
+    }
+  }
