@@ -165,10 +165,10 @@ void loop() {
     client.publish("sensori", msg1);
     }
     else{
-     snprintf (msg0, 100, "Ei rottaa #%ld", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg0);
-    client.publish("sensori", msg0);
+    // snprintf (msg0, 100, "Ei rottaa #%ld", value);
+   // Serial.print("Publish message: ");
+   // Serial.println(msg0);
+   // client.publish("sensori", msg0);
     }
   }
   
