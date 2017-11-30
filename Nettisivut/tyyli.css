@@ -1,36 +1,56 @@
-body 	{background-color: #990000;
-        font-family: verdana;
+body    {
+            text-align:center;
+			 background-color: #254982;
+            font-family: Helvetica;
+            color: white;
+                }
+
+h2      {
+            text-align:center;
+            color: white;
         }
-		a:link {
-		color: black; 
-		background-color: transparent; 
-		text-decoration: none;
+
+a:link {
+			color: black; 
+			background-color: transparent; 
+			text-decoration: none;
 		}
 		
-		a:visited {
-		color: pink;
-		background-color: transparent;
-		text-decoration: none;
+a:visited {
+			color: pink;
+			background-color: transparent;
+			text-decoration: none;
 		}
 
-		a:hover {
-		color: white;
-		background-color: transparent;
-		text-decoration: underline;
+a:hover {
+			color: white;
+			background-color: transparent;
+			text-decoration: underline;
 		}
 
-		a:active {
-		color: blue;
-		background-color: transparent;
-		text-decoration: underline;
+a:active {
+			color: blue;
+			background-color: transparent;
+			text-decoration: underline;
 		}
-		table    {
-            border: 1px solid #FFFFFF;
-        }
-        table > thead > tr > th {
-            font-size: 2em;
-        }
-        table > tbody > tr > td {
-            color: #000000;
+		
+
+table    {
+                border-collapse: collapse;
+                border: 3px solid black;
 
         }
+
+th,td    {
+        padding: 10px;
+        color: black;
+        }
+
+th {
+        background-color: gray;
+        }
+
+td    {
+        background-color: white;
+        }
+
