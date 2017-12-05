@@ -159,7 +159,7 @@ void loop() {
     lastMsg = now;
     ++value;
     if (rotta==1){
-    snprintf (msg1, 100, "Rotta #%ld", value);
+    snprintf (msg1, 100, "Rotta");
       Serial.print("Publish message: ");
      Serial.println(msg1);
     client.publish("sensori", msg1);
@@ -172,8 +172,8 @@ void loop() {
     }
   }
   
-  // Wait 250 ms before next reading
-  delay(250);
+  // Wait 2000 ms before next reading
+  delay(2000);
 
     }
   }

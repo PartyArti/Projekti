@@ -4,12 +4,12 @@
 
 <meta charset="utf-8">
 <link rel="stylesheet" href="tyyli.css">
-<title>Taulukkosivu</title>
+<title>Arkisto</title>
 </head>
 
 <body>
 
-<h2>RoTa 6000 taulukko</h2>
+<h2>Vanhat havainnot</h2>
 
 
 <?php
