@@ -25,7 +25,7 @@ echo "Fail !";
 }
 
 
-$result = mysqli_query($con,"SELECT * FROM Rotta");
+$result = mysqli_query($con,"SELECT * FROM Rotta2");
 echo "<table border='5'>" .
 "<tr> <th>Tila</th> <th>Pvm</th> <th>Aika</th> </tr>";
 while($row = mysqli_fetch_array($result)) {
