@@ -162,6 +162,7 @@ void loop() {
     snprintf (msg1, 100, "Rotta");
       Serial.print("Publish message: ");
      Serial.println(msg1);
+     Serial.println("Toimii");
     client.publish("sensori", msg1);
     }
     else{
