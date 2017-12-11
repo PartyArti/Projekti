@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <link rel="stylesheet" href="tyyli.css">
-<title>Arkisto</title>
+<title>Haku</title>
 
 <style>
 .button {
@@ -48,11 +48,15 @@
 }</style>
 
 </head>
-
+<script></script>
 <body>
 
-<h2>Vanhat havainnot</h2>
+<h2>RoTa 6000 Haku</h2>
 
+<h3></h3>
+<br>
+
+<a class="button" style="vertical-align:middle"><span>Hae tietoja</span></a>
 
 <?php
 
@@ -67,27 +71,16 @@ echo "Fail !";
 }
 
 
-$result = mysqli_query($con,"SELECT * FROM Rotta");
-echo "<table border='5'>" .
-"<tr> <th>Tila</th> <th>Pvm</th> <th>Aika</th> </tr>";
-while($row = mysqli_fetch_array($result)) {
-echo "<tr>";
-echo "<td>" . $row['Tila'] . "</td>";
-echo "<td>" . $row['Pvm'] . "</td>";
-echo "<td>" . $row['Aika'] . "</td>";
-echo "</tr>";
-}
-echo "</table>";
 
 date_default_timezone_set('Europe/Helsinki');
 
-echo "<br>Sivu päivitetty viimeksi: " . (date("d.m.Y"));
+echo "<br><br>Sivu päivitetty viimeksi: " . (date("d.m.Y"));
 
 echo date(" G:i:s ") . "<br><br>";
 mysqli_close($con);
 
 ?>
 <a class="button" style="vertical-align:middle"  href="etusivu.html"><span>Takaisin</span></a>
-
+<p>
 </body>
 </html>

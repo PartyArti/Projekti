@@ -17,7 +17,6 @@ const char* mqtt_server = "172.20.10.6";
 long lastMsg = 0;
 char msg1[100];
 char msg0[100];
-int value = 0;
 boolean rotta = 0;
 
 
@@ -61,6 +60,22 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+void haku(){
+   Info();
+   if (rotta==1){
+    snprintf (msg1, 100, "Rotta");
+      Serial.print("Publish message: ");
+     Serial.println(msg1);
+    client.publish("sensori", msg1);
+    }
+  else{
+    snprintf (msg0, 100, "Ei rottaa");
+    Serial.print("Publish message: ");
+    Serial.println(msg0);
+    client.publish("sensori", msg0);
+    }
+  }
+
 void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
@@ -72,7 +87,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
   // Switch on the LED if an 1 was received as first character
   if ((char)payload[0] == '1') {
-    digitalWrite(BUILTIN_LED, LOW);   // Turn the LED on (Note that LOW is the voltage level
+    digitalWrite(BUILTIN_LED, LOW);
+  haku();
+  // Turn the LED on (Note that LOW is the voltage level
     // but actually the LED is on; this is because
     // it is acive low on the ESP-01)
   } else {
@@ -139,6 +156,7 @@ void setup() {
   }
 }
 
+
 void loop() {
   
   // Read the proximity value
@@ -153,28 +171,21 @@ void loop() {
     reconnect();
   }
   client.loop();
-
+  }
   long now = millis();
   if (now - lastMsg > 100) {
     lastMsg = now;
-    ++value;
     if (rotta==1){
     snprintf (msg1, 100, "Rotta");
       Serial.print("Publish message: ");
      Serial.println(msg1);
-     Serial.println("Toimii");
     client.publish("sensori", msg1);
     }
-    else{
-    // snprintf (msg0, 100, "Ei rottaa #%ld", value);
-   // Serial.print("Publish message: ");
-   // Serial.println(msg0);
-   // client.publish("sensori", msg0);
-    }
-  }
+    
+  
+  
   
   // Wait 2000 ms before next reading
   delay(2000);
-
+      }
     }
-  }

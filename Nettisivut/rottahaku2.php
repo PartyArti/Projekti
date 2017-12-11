@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <link rel="stylesheet" href="tyyli.css">
-<title>Arkisto</title>
+<title>Haku</title>
 
 <style>
 .button {
@@ -51,9 +51,9 @@
 
 <body>
 
-<h2>Vanhat havainnot</h2>
+<h2>RoTa 6000 Haku</h2>
 
-
+<h3> Hae tietoja:</h3>
 <?php
 
 $servername = "139.59.170.58";
@@ -67,7 +67,7 @@ echo "Fail !";
 }
 
 
-$result = mysqli_query($con,"SELECT * FROM Rotta");
+$result = mysqli_query($con,"SELECT * FROM Rottahaku");
 echo "<table border='5'>" .
 "<tr> <th>Tila</th> <th>Pvm</th> <th>Aika</th> </tr>";
 while($row = mysqli_fetch_array($result)) {
@@ -87,6 +87,7 @@ echo date(" G:i:s ") . "<br><br>";
 mysqli_close($con);
 
 ?>
+
 <a class="button" style="vertical-align:middle"  href="etusivu.html"><span>Takaisin</span></a>
 
 </body>
