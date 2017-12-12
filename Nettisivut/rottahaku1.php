@@ -10,7 +10,7 @@
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color: #555555;
+  background-color: #000080;
   border: none;
   color: #FFFFFF;
   text-align: center;

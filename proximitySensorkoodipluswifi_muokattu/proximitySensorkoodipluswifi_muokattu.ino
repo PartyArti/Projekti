@@ -21,7 +21,7 @@ boolean rotta = 0;
 
 
 boolean Info(){
-    if (proximity_data > 10){
+    if (proximity_data > 30){
       
       Serial.println("rotta havaittu");
       return rotta = 1;
@@ -181,6 +181,12 @@ void loop() {
      Serial.println(msg1);
     client.publish("sensori", msg1);
     }
+    /*else{
+    snprintf (msg0, 100, "Ei rottaa");
+    Serial.print("Publish message: ");
+    Serial.println(msg0);
+    client.publish("sensori", msg0);
+    }*/
     
   
   
